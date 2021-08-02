@@ -1,0 +1,48 @@
+.search {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 0 25px;
+  margin-bottom: 25px;
+
+  input,
+  button {
+    height: 36px;
+    padding: 0 15px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none
+  }
+
+  input {
+    outline: none;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: slateblue;
+    font-weight: 600;
+    color: #fff;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+
+    &:disabled {
+      cursor: default;
+      filter: brightness(70%);
+    }
+  }
+}
+
+.title {
+  margin-top: 250px;
+  text-align: center;
+}
+
+@media (max-width: 450px) {
+  .search {
+    flex-direction: column;
+  }
+}
+

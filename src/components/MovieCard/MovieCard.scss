@@ -1,0 +1,53 @@
+.card {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+
+  &-image {
+    position: relative;
+    .img {
+      width: 280px;
+      height: 360px;
+      box-shadow: 0px 5px 10px 3px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.025);
+      }
+    }
+
+    .vote_average {
+      position: absolute;
+      z-index: 1;
+      top: 5px;
+      left: 5px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 1px 3px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border-radius: 3px;
+      line-height: 18px;
+
+      .star {
+        width: 16px;
+        height: 16px;
+        background: transparent;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .card {
+    width: 280px;
+    &-image {
+      .img {
+        width: 260px;
+      }
+    }
+  }
+}

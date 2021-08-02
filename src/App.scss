@@ -1,0 +1,23 @@
+.App {
+  .nav {
+    display: flex;
+    gap: 25px;
+    padding: 15px 25px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.75);
+    text-transform: uppercase;
+
+    .active {
+      color: gold;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      &:hover {
+        transform: translateY(3px);
+      }
+    }
+  }
+}
