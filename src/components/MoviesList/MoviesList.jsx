@@ -7,14 +7,20 @@ import { moviesTypes } from '../../types/types';
 import { MovieInfo } from '../MovieInfo/MovieInfo';
 import { getMovieById } from '../../api/api';
 
+
+
 export class MoviesList extends Component {
+  selectedMovieFromStorage = JSON.parse(localStorage.getItem('popularMovieInfo'));
 
   state = {
-    selectedMovie: null,
+    selectedMovie: this.selectedMovieFromStorage || null,
   }
 
   componentDidUpdate() {
     window.scrollTo(0, 0)
+    if (this.state.selectedMovie) {
+      localStorage.setItem('popularMovieInfo', JSON.stringify(this.state.selectedMovie))
+    }
   }
 
   getMovieById = (id) => {

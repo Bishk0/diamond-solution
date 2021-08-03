@@ -18,16 +18,16 @@ class App extends Component {
     return (
       <div className="App">
         <nav className="nav">
-          <NavLink to={{pathname: "/popular"}}>Popular</NavLink>
-          <NavLink to={{pathname: "/search"}}>Search</NavLink>
+          <NavLink to={{pathname: "/diamond-solution/popular"}}>Popular</NavLink>
+          <NavLink to={{pathname: "/diamond-solution/search"}}>Search</NavLink>
         </nav>
         <Switch>
           <Route
-            path="/popular"
+            path="/diamond-solution/popular"
             render={() => <MoviesList movies={this.state.movies} />}
           />
-          <Route path="/search" component={SearchMovie} />
-          <Redirect exact from={'/'} to={'/popular'} />
+          <Route path="/diamond-solution/search" component={SearchMovie} />
+          <Redirect from={'/'} to={'/diamond-solution/popular'} />
           <Route
             render={() =>
               <h1 style={{textAlign: 'center', color: 'indianred'}}>

@@ -40,6 +40,12 @@
   text-align: center;
 }
 
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 @media (max-width: 450px) {
   .search {
     flex-direction: column;

@@ -1,24 +1,34 @@
 import React, { Component } from 'react';
 import { getMovieById, searchMovies } from '../../api/api';
+import { MovieCard } from '../MovieCard';
 import { MovieInfo } from '../MovieInfo/MovieInfo';
-import { MoviesList } from '../MoviesList/MoviesList';
 import './SearchMovie.scss';
 
 export class SearchMovie extends Component {
+  selectedMovieFromStorage = JSON.parse(localStorage.getItem('searchMovieInfo'));
+  moviesFromStorage = JSON.parse(localStorage.getItem('searchMovies'));
+
   state = {
     search: '',
-    movies: [],
-    selectedMovie: null,
+    movies: this.moviesFromStorage || [],
+    selectedMovie: this.selectedMovieFromStorage || null,
   }
 
   componentDidUpdate() {
     window.scrollTo(0, 0);
+
+    if (this.state.selectedMovie) {
+      localStorage.setItem('searchMovieInfo', JSON.stringify(this.state.selectedMovie))
+    }
   }
 
   getMovies = () => {
     if (this.state.search) {
       searchMovies(this.state.search)
-      .then(movies => this.setState({ movies: movies.results }));
+      .then(movies => {
+        localStorage.setItem('searchMovies', JSON.stringify(movies.results))
+        this.setState({ movies: movies.results })
+      });
     }
   }
 
@@ -30,7 +40,7 @@ export class SearchMovie extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     this.getMovies()
-    this.setState({search: '', selectedMovie: null});
+    this.setState({search: ''});
   }
 
   render() {
@@ -50,20 +60,24 @@ export class SearchMovie extends Component {
             Search
           </button>
         </form>
-        {
-          this.state.movies.length
-            ? <MoviesList
-                movies={this.state.movies}
-                getMovieById={this.getMovieById}
-              />
-            : <h2 className="title">No movies found, please try again</h2>
-        }
-        {
-          this.props.selectedMovie
-            ? <MovieInfo movie={this.state.selectedMovie} />
-            : null
-        }
-      
+        <div className="movies">
+          {
+            this.state.selectedMovie
+              ? <MovieInfo movie={this.state.selectedMovie} />
+              : null
+          }
+          {
+            this.state.movies.length
+              ? this.state.movies.map(movie => (
+                  <MovieCard
+                    key={movie.id}
+                    {...movie}
+                    getMovieById={this.getMovieById}
+                  />
+                ))
+              : <h2 className="title">No movies found, please try again</h2>
+          }
+        </div>
       </>
     );
   }
