@@ -6,10 +6,10 @@ export const MovieInfo = ({ movie }) => {
   const imageURL = `https://image.tmdb.org/t/p/w780${movie.poster_path}`;
   const altPoster = './img/posterplaceholder.jpg';
   const genres = movie.genres.map(genre => genre.name).join(', ');
-  
+
   return (
     <div className="info-container">
-      <img 
+      <img
         className="img"
         src={movie.poster_path ? imageURL : altPoster}
           alt={`${movie.title} poster`} />
@@ -37,6 +37,18 @@ export const MovieInfo = ({ movie }) => {
         <p><b>Release date:</b> {movie.release_date}</p>
         <p><b>Budget:</b> {movie.budget}$</p>
         <p><b>Revenue:</b> {movie.revenue}$</p>
+        <hr />
+        <p>You can also share the movie with a friend,<br />just send him a link:</p>
+        <p>
+          <b>IMDb: </b>
+          <a href={`https://www.imdb.com/title/${movie.imdb_id}/`} target="_blank">
+            Go to Movie
+          </a>
+        </p>
+        <p>
+          <b>Original page of the film: </b>
+          <a href={`${movie.homepage}`} target="_blank">Go to Movie</a>
+        </p>
       </div>
     </div>
   );

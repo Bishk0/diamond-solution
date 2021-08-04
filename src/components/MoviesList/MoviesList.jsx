@@ -25,7 +25,7 @@ export class MoviesList extends Component {
 
   getMovieById = (id) => {
     getMovieById(id)
-      .then(movie => this.setState({ selectedMovie: movie }));
+      .then(movie =>this.setState({ selectedMovie: movie }));
   }
 
   render() {
